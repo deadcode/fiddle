@@ -1,1 +1,1 @@
-# Visual Studio Code Tutorial
+# Visual Studio Code Tutorial - Lets learn!
