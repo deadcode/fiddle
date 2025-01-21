@@ -48,6 +48,7 @@
     kubectl get pods -o wide
     kubectl get deployments
     kubectl get services
+    kubectl get replicasets
     ```
 * Show / describe details:
     ```console
@@ -57,6 +58,7 @@
     kubectl describe pods
     kubectl describe service <name>
     kubectl describe services
+    kubectl describe replicasets
     ```
 * Deploy application
     ```console
@@ -67,7 +69,23 @@
     ```console
     kubectl apply -f <file-name>
     ```
+* Create pod
+    ```console
+    kubectl run <name> --image=<url/name>
+    ```
+* Delete 
+    ```console
+    kubectl delete pod <name>
+    kubectl delete replicaset <name>
+    ```
 * Forward the port (to access the sevice)
     ```console
     kubectl port-forward service/hello-minikube 7080:8080
+    ```
+* Scale a replicaset
+    ```console
+    kubectl scale --replicas=<n> -f <replicaset-yaml-file>
+    kubectl scale --replicas=<n> replicaset <replica-set-name>
+    kubectl edit replicasets
+    kubectl edit replicaset <name>
     ```
