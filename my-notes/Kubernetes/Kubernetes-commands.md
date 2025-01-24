@@ -89,3 +89,14 @@
     kubectl edit replicasets
     kubectl edit replicaset <name>
     ```
+* Rollout Deployment
+    ```console
+    kubectl rollout status deployment/<deployment-name>
+    kubectl rollout history all
+    kubectl rollout undo deployment/<deployment-name>
+    ```
+* Edit
+    ```console
+    kubectl edit <deployment-name>
+    kubectl set image <deployment-name> <pod-name>=<pod-image-name> e.g. kubectl set image myapp-deployment nginx=nginx:1.9.1
+    ```

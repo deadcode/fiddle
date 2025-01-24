@@ -61,6 +61,7 @@ Master nodes run: Apiserver + etcd + controller + scheduler
 | ----- | ----- | ----- | ----- |
 
 # Kubernetes Concepts
+## Pods
 What is a pod?
 - A pod is an instance of an application (on a node)
 - A pod is the smallest object managed by kubernetes
@@ -68,3 +69,64 @@ What is a pod?
   - a pod <-> container relation is usually 1-to-1
 - A pod COULD contain more than 1 container but they are usually not the same kind
 - containers within the pod share the same network space (talk via localhost) and share the same storage as well
+
+## Replication Controller
+- Replication controller helps load balance/scale pods across multiple paths on different nodes (or the same node)
+### Replication Controller vs Replica Set
+- Replica Sets are the newer preffered way of setting up replication as opposed to the Replication Controller
+
+## Deployments
+- Higher object that contains replica-sets, pods and allows capability to do seamless rolling updates, undo, pause/resume changes.
+- Each deployment starts as a rollout with a revision=1
+- Depolyment stategies:
+  - Recreate: destroy all old pods and create new ones
+  - Rolling: Take down pods one-by-one and bring up new ones in its place. This is the default update strategy. Under the hood a new Replica-set is created and new pods are created in the new replica-set.
+
+Hierarchy:
+Deployments => Replica-Set => Pods => containers <-> Nodes
+
+# Networking in Kubernetes
+- All pods on single node are attached to the 10.244.0.0 network and get private IP addresses from the 10.244.0.x address space.
+- It is not advised to rely on the internal IP addresses for pod-2-pod communication:
+  - The Pod IP addresses can change during updates and rollbacks
+  - If the Pods are on different nodes, the local IP would not work.
+- It is the users job to configure the networking for the Pods in the cluster
+  - All containers/Pods should be able to communicate without a NAT
+  - All nodes and containers can communicate with each other without a NAT
+- Ready made solutions for setting up networking include:
+  - Flannel
+  - VMware NSX
+  - Cilium
+  - Cisco ACI
+  - Calico
+  
+# Kubernetes Services
+- Services within Kubernetes that allow communication with the cluster
+  - NodePort: Exposes a port that is externally visible to the internal network (for the pods to listen)
+  - ClusterIP: Creates a virtual IP within the cluster to enable communication between services within the cluster
+  - LoadBalancer: Creates a load balancer to distribute load between servers within the group
+
+## NodePort
+- service type: NodePort
+- spec:
+  - targetPort: listening port of the pods
+  - port: internal port of the service
+  - nodePort: external port where the service listens
+
+## ClusterIP
+- service type: ClusterIp
+- spec:
+  - targetPort: Port of the backend of the service
+  - port: port where the service listens
+
+## LoadBalancer
+- service type: LoadBalancer
+- Only works on supported cloud platforms eg. GCP, Azure, AWS etc. Does not work on virtualBox etc.
+- On unsupported platforms this fallbacks to NodePort service.
+
+# Kubernetes deployment
+- Self hosted / turnkey: VMs and clusters managed manually e.g. kops or KubeOne
+- Hosted / Managed: kubernetes-as-a-service, VMs and clusters managed by providers e.g.
+  - Google Kubernetes Engine - GKE
+  - Azure Kubernetes Engine - AKS
+  - Amazon Elastic Kubernetes Service - EKS

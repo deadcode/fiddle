@@ -3,7 +3,9 @@
     "kubernetes": "pod-*.yaml",
     "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json": [
       "file:///Volumes/source_code/fiddle/my-notes/Kubernetes/pod-test.yaml",
-      "file:///Volumes/source_code/fiddle/my-notes/Kubernetes/replicaset-definition-1.yaml"
+      "file:///Volumes/source_code/fiddle/my-notes/Kubernetes/replicaset-definition-1.yaml",
+      "file:///Volumes/source_code/fiddle/my-notes/Kubernetes/deployments/deployment-1.yml",
+      "file:///Volumes/source_code/fiddle/my-notes/Kubernetes/services/service-1.yml"
     ]
   }
 }
