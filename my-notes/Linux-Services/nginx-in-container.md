@@ -1,11 +1,10 @@
 # Start NGINX in a container
 
-* Download the nginx image
+## Download the nginx image
 ``` shell
 docker pull nginx
 ```
-```
-* Run nginx
+## Run nginx
 ``` shell
 docker run --name docker-nginx -p 8080:80 nginx 
 ```
@@ -14,7 +13,7 @@ docker run --name docker-nginx -p 8080:80 nginx
   - -p specifies the port you are exposing in the format of -p local-machine-port:internal-container-port. In this case, you are mapping port :80 in the container to port :80 on the server.
   - nginx is the name of the image on Docker Hub.
 
-* Build a web page to serve 
+## Build a web page to serve 
 ``` shell
 mkdir -p ~/docker-nginx/html
 
@@ -51,7 +50,7 @@ cat <<EOF >index.html
 EOF
 ```
 
-* Create a custom nginx config file
+## Create a custom nginx config file
   Could be used to enable autoindex for local directories 
   or enable PHP support
 ```shell
@@ -107,23 +106,20 @@ server {
 }
 EOF
 ```
-* Stop / Remove old container
+## Stop / Remove old container
 ```shell
 docker stop docker-nginx
 
 docker rm docker-nginx
 ```
-* Restart docker nginx with all mapping
+## Restart docker nginx with all mapping
 ``` shell
 docker run --name docker-nginx -p 80:80 -v ~/docker-nginx/html:/usr/share/nginx/html -v ~/docker-nginx/default.conf:/etc/nginx/conf.d/default.conf -d nginx
 ```
   - -d : Run docker in detached / daemon mode
   - -v : Map local file/directory to the container file/directory
 
-* Note: After any changes to config file restart the nginx
+## Note: After any changes to config file restart the nginx
 ``` shell
 docker restart docker-nginx
-```
-
-```
 ```

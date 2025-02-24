@@ -58,7 +58,6 @@ Master nodes run: Apiserver + etcd + controller + scheduler
 | Purpose | Debugging | General Purpose | Debugging |
 | Communnity | containerd | containerd | Kubernetes |
 | Works with | containerd| containerd | All CRI compatible runtimes |
-| ----- | ----- | ----- | ----- |
 
 # Kubernetes Concepts
 ## Pods
