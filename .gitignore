@@ -1,3 +1,4 @@
 .DS_Store
-*/.DS_Store
-fiddle.vs/.DS_Store
+*.DS_Store*
+*.ipynb_checkpoints*
+*.vagrant*
