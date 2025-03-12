@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package calc;
+option go_package = "github.com/deadcode/fiddle/fiddle.gRPC/grpc-go/calc/proto";
+
+import "sum.proto";
+
+service CalcService {
+    rpc Sum(SumRequest) returns (SumResponse);
+}
