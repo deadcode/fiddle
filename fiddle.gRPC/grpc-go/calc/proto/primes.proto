@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package calc;
+
+option go_package = "github.com/deadcode/fiddle/fiddle.gRPC/grpc-go/calc/proto";
+
+message PrimeRequest {
+    int64   number = 1;
+}
+
+message PrimeResponse {
+    int64   result = 1;
+}
