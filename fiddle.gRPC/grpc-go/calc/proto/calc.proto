@@ -5,8 +5,10 @@ option go_package = "github.com/deadcode/fiddle/fiddle.gRPC/grpc-go/calc/proto";
 
 import "sum.proto";
 import "primes.proto";
+import "avg.proto";
 
 service CalcService {
-    rpc Sum(SumRequest) returns (SumResponse);
-    rpc Primes(PrimeRequest) returns (stream PrimeResponse);
+    rpc Sum (SumRequest) returns (SumResponse);
+    rpc Primes (PrimeRequest) returns (stream PrimeResponse);
+    rpc Avg (stream AvgRequest) returns (AvgResponse);
 }
