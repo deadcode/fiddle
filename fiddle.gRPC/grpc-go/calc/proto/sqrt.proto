@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package calc;
+
+option go_package = "github.com/deadcode/fiddle/fiddle.gRPC/grpc-go/calc/proto";
+
+message SqrtRequest {
+    int32   number = 1; // could be uint32, but using int32 intentionally
+}
+
+message SqrtResponse {
+    double  result = 1;
+}
