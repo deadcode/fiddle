@@ -6,6 +6,7 @@ import (
 
 	pb "github.com/deadcode/fiddle/fiddle.gRPC/grpc-go/calc/proto"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 var addr string = "0.0.0.0:50051"
@@ -25,6 +26,7 @@ func main() {
 
 	server := grpc.NewServer()
 	pb.RegisterCalcServiceServer(server, &Server{})
+	reflection.Register(server)
 
 	if err = server.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v\n", err)
