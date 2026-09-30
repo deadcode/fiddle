@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: librechat-credentials-env
+  namespace: librechat
+type: Opaque
+stringData:
+  CREDS_KEY: 29ae337c0bf5ab44afaf371e0fd6bd5025ef47596303a6561bb41f4d809300da
+  JWT_SECRET: 16de82b4f47a3f605f6fede759c3f841e26f4a87975de1e35d45ab8a8d9c524a
+  JWT_REFRESH_SECRET: 0961e36bd85ce33dda103dc7d480ab0adaa1476e8cb545de108ec49f35c68bb4
+  MEILI_MASTER_KEY: 539e0eac247ea596ddce5f783d1b25fd
